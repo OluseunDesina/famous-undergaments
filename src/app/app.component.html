@@ -99,43 +99,18 @@
     <div class="container mx-auto text-center">
       <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Shop by Category</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-        <!-- Boxers -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img class="w-full h-64 object-cover" src="https://via.placeholder.com/600x800" alt="Boxers">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-800">Boxers</h3>
-            <p class="text-gray-600 mt-2">Comfortable and loose-fitting, perfect for everyday wear.</p>
-            <a href="#" class="mt-4 inline-block bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded">
-              Shop Now
-            </a>
+        @for (category of categorys; track category._id) {
+          <div (mouseover)="activeCat = category" class="transform-none hover:scale-105 hover:-translate-y-4 bg-white shadow-lg rounded-lg overflow-hidden">
+            <img class="w-full h-64 object-cover" [src]="category.imageUrl" alt="Boxers">
+            <div class="p-6">
+              <h3 [ngClass]="{underline: activeCat?.id === category?.id}" class="text-xl font-semibold text-gray-800">{{category.title}}</h3>
+              <p class="text-gray-600 mt-2">{{category.description}}</p>
+              <a class="mt-4 inline-block bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded">
+                Shop Now
+              </a>
+            </div>
           </div>
-        </div>
-
-        <!-- Briefs -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img class="w-full h-64 object-cover" src="https://via.placeholder.com/600x800" alt="Briefs">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-800">Briefs</h3>
-            <p class="text-gray-600 mt-2">Classic, snug fit for support and comfort.</p>
-            <a href="#" class="mt-4 inline-block bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded">
-              Shop Now
-            </a>
-          </div>
-        </div>
-
-        <!-- Boxer Briefs -->
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-          <img class="w-full h-64 object-cover" src="https://via.placeholder.com/600x800" alt="Boxer Briefs">
-          <div class="p-6">
-            <h3 class="text-xl font-semibold text-gray-800">Boxer Briefs</h3>
-            <p class="text-gray-600 mt-2">Combining the fit of briefs with the length of boxers.</p>
-            <a href="#" class="mt-4 inline-block bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded">
-              Shop Now
-            </a>
-          </div>
-        </div>
-
+        }
       </div>
     </div>
   </section>
