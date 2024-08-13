@@ -1,0 +1,78 @@
+<nav class="p-4">
+  <div class="container mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <div class="text-black text-xl font-bold">
+      <a [routerLink]="['/']" routerLinkActive="router-link-active" >Famous undergarments</a>
+    </div>
+
+    <!-- Navbar Links (hidden on mobile) -->
+    <div class="hidden md:flex space-x-4">
+      <div class="flex gap-2 items-center">
+        <div class="relative flex items-center">
+          <button class="p-1 text-black focus:outline-none">
+            <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </button>
+          <span
+            class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+        </div>
+
+        <p class="hidden md:block">
+          Wishlist
+        </p>
+      </div>
+
+      <div class="flex gap-2 items-center">
+        <div class="relative flex items-center">
+          <button class="p-1 text-black focus:outline-none">
+            <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 3h18l-2 13H5L3 3zM16 8h2M8 8h2m-4 4h12M7 16a2 2 0 100 4 2 2 0 000-4zM17 16a2 2 0 100 4 2 2 0 000-4z" />
+            </svg>
+          </button>
+          <span
+            class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span>
+        </div>
+
+        <p class="hidden md:block">
+          Cart
+        </p>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="md:hidden">
+      <button (click)="showMenu = !showMenu" class="text-black focus:outline-none">
+        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu (hidden by default) -->
+  <div [ngClass]="{'hidden md:hidden': !showMenu}" class="hidden md:hidden">
+    <div class="relative flex items-center">
+      <button class="p-2 text-black focus:outline-none">
+        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </button>
+      <!-- <span
+        class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span> -->
+    </div>
+    <div class="relative flex items-center">
+      <button class="p-2 text-black focus:outline-none">
+        <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M3 3h18l-2 13H5L3 3zM16 8h2M8 8h2m-4 4h12M7 16a2 2 0 100 4 2 2 0 000-4zM17 16a2 2 0 100 4 2 2 0 000-4z" />
+        </svg>
+      </button>
+      <!-- <span
+        class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span> -->
+    </div>
+  </div>
+</nav>

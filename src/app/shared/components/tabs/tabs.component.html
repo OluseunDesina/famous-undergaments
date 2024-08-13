@@ -1,0 +1,5 @@
+<div class="flex items-center space-x-4 mb-4 lg:mb-0">
+  @for (tab of tabs; track tab._id) {
+    <button class="filter-button text-gray-700 px-4 py-2 rounded-md focus:outline-none">{{tab.name}}</button>
+  }
+</div>

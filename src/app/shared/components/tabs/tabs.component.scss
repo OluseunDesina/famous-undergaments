@@ -1,0 +1,28 @@
+
+.filter-button {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.filter-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #e53e3e;
+  /* Red color for the bottom border */
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.filter-button:hover::after,
+.filter-button.active::after {
+  width: 100%;
+  left: 0;
+}
+
+.filter-button:hover {
+  color: #e53e3e;
+  /* Change text color on hover */
+}

@@ -1,0 +1,185 @@
+<app-hero></app-hero>
+
+<!-- Shop by Category Section -->
+<section class="py-16 bg-primary">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-black mb-8">Shop by Category</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      @for (category of categorys; track category._id) {
+      <!-- <div (mouseover)="activeCat = category"
+          class="transform-none hover:scale-110 hover:-translate-y-4 bg-white shadow-lg rounded-lg overflow-hidden">
+          <img class="w-full h-64 object-cover" [src]="category.imageUrl" alt="Boxers">
+          <div class="p-6">
+            <h3 [ngClass]="{underline: activeCat?.id === category?.id}" class="text-xl font-semibold text-black">
+              {{category.title}}</h3>
+            <p class="text-black mt-2 text-sm">{{category.description}}</p>
+            <a class="mt-4 inline-block bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded">
+              Shop Now
+            </a>
+          </div>
+        </div> -->
+      <div (click)="onCategorySelect(category)" (mouseover)="activeCat = category"
+        class="transform-none hover:scale-110 hover:-translate-y-4 rounded-lg relative bg-cover bg-center w-full h-64"
+        style="background-image: url('https://via.placeholder.com/600x800');">
+        <div class="absolute inset-0 bg-black opacity-30"></div>
+
+        <div
+          class="container mx-auto h-full flex flex-col justify-center items-center text-center text-white relative z-10">
+          <h3 [ngClass]="{'underline': activeCat?.id === category?.id}" class="text-xl font-semibold text-white">
+            {{category.title}}</h3>
+          <p class="text-white mt-2 text-sm">{{category.description}}</p>
+          <app-button
+            [inputClasses]="'mt-8 '">
+            Order Now
+          </app-button>
+        </div>
+      </div>
+
+      }
+    </div>
+  </div>
+</section>
+
+
+<!-- Testimonial Section -->
+<section class="py-16 bg-white">
+  <div class="container mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold text-black mb-8">What Our Customers Say</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Testimonial 1 -->
+      <div class="p-6 rounded-lg">
+        <div class="mb-4">
+          <img class="w-16 h-16 rounded-full mx-auto" src="https://via.placeholder.com/100" alt="Customer 1">
+        </div>
+        <h3 class="text-xl font-semibold text-black">John Doe</h3>
+        <p class="text-black text-xs mt-2">"The best undergarments I've ever worn. Comfortable and durable, perfect
+          for
+          all-day wear."</p>
+
+        <!-- Star Rating -->
+        <div class="flex justify-center mt-4">
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+        </div>
+
+        <!-- Social Media Handle -->
+        <div class="mt-4 text-secondary">
+          <p class="text-xs">{{'@john_doe'}} <span class="italic">(Twitter)</span></p>
+        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="p-6 rounded-lg">
+        <div class="mb-4">
+          <img class="w-16 h-16 rounded-full mx-auto" src="https://via.placeholder.com/100" alt="Customer 2">
+        </div>
+        <h3 class="text-xl font-semibold text-black">Jane Smith</h3>
+        <p class="text-black text-xs mt-2">"Amazing quality and great fit! I've recommended these to all my friends."
+        </p>
+        <!-- Star Rating -->
+        <div class="flex justify-center mt-4">
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+        </div>
+
+        <!-- Social Media Handle -->
+        <div class="mt-4 text-secondary">
+          <p class="text-xs">{{'@john_doe'}} <span class="italic">(Twitter)</span></p>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="p-6 rounded-lg">
+        <div class="mb-4">
+          <img class="w-16 h-16 rounded-full mx-auto" src="https://via.placeholder.com/100" alt="Customer 3">
+        </div>
+        <h3 class="text-xl font-semibold text-black">David Lee</h3>
+        <p class="text-black text-xs mt-2">"These are hands down the most comfortable undergarments I've purchased.
+          Highly
+          recommend!"</p>
+        <!-- Star Rating -->
+        <div class="flex justify-center mt-4">
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+          <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M12 17.75l-6.454 4.11 2.429-7.51L2.5 9.24l7.799-.004L12 2l1.7 7.236 7.8.004-5.475 5.11 2.429 7.51L12 17.75z" />
+          </svg>
+        </div>
+
+        <!-- Social Media Handle -->
+        <div class="mt-4 text-secondary">
+          <p class="text-xs">{{'@john_doe'}} <span class="italic">(Twitter)</span></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="py-16 px-4 bg-gray-100">
+  <div class="container mx-auto text-center">
+    <h2 class="text-2xl md:text-4xl font-bold text-black mb-6 md:mb-8">Subscribe to Our Newsletter</h2>
+    <p class="text-secondary text-sm mb-6 md:mb-8">Get the latest updates on new products and upcoming sales.</p>
+    <form class="max-w-lg mx-auto">
+      <div class="flex flex-col md:flex-row items-center">
+        <input type="email" placeholder="Enter your email"
+          class="w-full md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary">
+        <app-button>
+          Subscribe
+        </app-button>
+      </div>
+    </form>
+  </div>
+</section>
