@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { HeroComponent } from './hero/hero.component';
 import { ButtonComponent } from '../shared/components/button/button.component';
 import { Router, RouterLink } from '@angular/router';
+import { InputComponent } from '../shared/components/input/input.component';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,7 +12,8 @@ import { Router, RouterLink } from '@angular/router';
     CommonModule,
     RouterLink,
     HeroComponent,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent
 ],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
