@@ -1,5 +1,5 @@
 <section class="py-12 px-4 bg-gray-50">
-  <div class="max-w-7xl mx-auto">
+  <div class="container mx-auto">
     <!-- Page Header -->
     <div class="flex items-center justify-between mb-8">
       <h1 class="text-3xl font-bold text-gray-800">Shop All Products</h1>
@@ -36,55 +36,14 @@
     </div>
 
     <!-- Product Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Product Card -->
-      <!-- <div (mouseleave)="productActive=false" (mouseover)="productActive=true"
-        class="relative h-100 bg-white border border-gray-200 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-        <img src="https://via.placeholder.com/300x300" alt="Product Image"
-          class="rounded-t-lg w-full h-60 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold text-gray-800">Product Name</h2>
-          <p class="text-gray-600 mt-2">$25.00</p>
-          @if (productActive) {
-          <ng-container>
 
-            <div class="absolute inset-0 bg-red-500 opacity-30">
-            </div>
-            <div
-              class="container mx-auto h-full flex flex-col justify-center items-center text-center text-white relative z-10">
-              <button
-                class="w-full bg-red-500 text-white mt-4 py-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">Add
-                to Cart</button>
-            </div>
-          </ng-container>
-          }
-        </div>
-      </div> -->
-
-      <div (mouseleave)="productActive = false" (mouseover)="productActive = true"
-        class="relative bg-white border border-gray-200 rounded-lg shadow-lg transition-shadow duration-300">
-        <img src="https://via.placeholder.com/300x300" alt="Product Image"
-          class="rounded-t-lg w-full h-60 object-cover">
-        <div class="p-4">
-          <h2 class="text-lg font-semibold text-gray-800">Product Name</h2>
-          <p class="text-gray-600 mt-2">$25.00</p>
-          @if (productActive) {
-            <div
-              class="absolute inset-0 flex flex-col gap-2 items-center justify-center bg-black bg-opacity-30 text-white">
-              <app-button>
-                Add to Cart
-              </app-button>
-              <app-button>
-                Add to Wishlist
-              </app-button>
-
-            </div>
-          }
-          <!-- Overlay and Button -->
-        </div>
-      </div>
-
-
+      <app-product-card [product]="{name: 'product 1', price: '25'}"></app-product-card>
+      <app-product-card [product]="{name: 'product 2', price: '25'}"></app-product-card>
+      <app-product-card [product]="{name: 'product 3', price: '25'}"></app-product-card>
+      <app-product-card [product]="{name: 'product 4', price: '25'}"></app-product-card>
+      <app-product-card [product]="{name: 'product 5', price: '25'}"></app-product-card>
       <!-- Repeat Product Cards -->
       <!-- More product cards here... -->
     </div>

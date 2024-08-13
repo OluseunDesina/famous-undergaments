@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { TabsComponent } from '../../shared/components/tabs/tabs.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [
-    ButtonComponent,
+    // ButtonComponent,
+    ProductCardComponent,
     TabsComponent
   ],
   templateUrl: './product-list.component.html',
@@ -27,6 +29,6 @@ export class ProductListComponent {
     {
       name: 'Boxer Brief',
     },
-  ]
+  ];
 
 }
