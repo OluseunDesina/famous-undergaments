@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ProductCardComponent } from '../products/product-card/product-card.component';
-import { TabsComponent } from '../shared/components/tabs/tabs.component';
-import { ButtonComponent } from '../shared/components/button/button.component';
+import { ProductCardComponent } from '../product-card/product-card.component';
+import { TabsComponent } from '../../shared/components/tabs/tabs.component';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-product-view',
