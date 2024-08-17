@@ -14,6 +14,7 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 })
 export class ProductViewComponent {
 
+
   similarProducts: any[] = [
     {
       name: 'similar product 1',

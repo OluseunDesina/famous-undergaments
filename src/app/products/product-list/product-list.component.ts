@@ -34,4 +34,37 @@ export class ProductListComponent {
     },
   ];
 
+  productList: any[] = [
+    {
+      name: 'Product',
+      price: '25',
+      imageUrl: '../../../assets/MEN-BOXER-BLACK.jpg'
+    },
+    {
+      name: 'Product',
+      price: '25',
+      imageUrl: '../../../assets/MEN-BOXER-BLUE.jpg'
+    },
+    {
+      name: 'Product',
+      price: '25',
+      imageUrl: '../../../assets/MEN-BOXER-WHITE.jpg'
+    },
+    {
+      name: 'Product',
+      price: '25',
+      imageUrl: '../../../assets/MEN-BOXER-BLACK.jpg'
+    },
+    {
+      name: 'Product',
+      price: '25',
+      imageUrl: '../../../assets/MEN-BOXER-BLUE.jpg'
+    },
+    {
+      name: 'Product',
+      price: '25',
+      imageUrl: '../../../assets/MEN-BOXER-WHITE.jpg'
+    },
+  ]
+
 }

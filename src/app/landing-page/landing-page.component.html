@@ -1,7 +1,7 @@
 <app-hero></app-hero>
 
 <!-- Shop by Category Section -->
-<section class="py-16 bg-primary">
+<section class="py-16">
   <div class="container mx-auto text-center">
     <h2 class="text-3xl md:text-4xl font-bold text-black mb-8">Shop by Category</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -19,9 +19,9 @@
           </div>
         </div> -->
       <div (click)="onCategorySelect(category)" (mouseover)="activeCat = category"
-        class="transform-none hover:scale-110 hover:-translate-y-4 rounded-lg relative bg-cover bg-center w-full h-64"
-        style="background-image: url('https://via.placeholder.com/600x800');">
-        <div class="absolute inset-0 bg-black opacity-30"></div>
+        class="transform-none hover:scale-110 hover:-translate-y-4 rounded-lg relative bg-contain bg-no-repeat bg-center w-full h-64"
+        style="background-image: url({{category?.imageUrl}});">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
 
         <div
           class="container mx-auto h-full flex flex-col justify-center items-center text-center text-white relative z-10">
@@ -167,10 +167,10 @@
   </div>
 </section>
 
-<section class="py-16 px-4 bg-gray-100">
+<section class="py-16 px-4 bg-white ">
   <div class="container mx-auto text-center">
-    <h2 class="text-2xl md:text-4xl font-bold text-black mb-6 md:mb-8">Subscribe to Our Newsletter</h2>
-    <p class="text-secondary text-sm mb-6 md:mb-8">Get the latest updates on new products and upcoming sales.</p>
+    <h2 class="text-2xl md:text-4xl font-bold mb-6 md:mb-8">Subscribe to Our Newsletter</h2>
+    <p class="text-sm mb-6 md:mb-8">Get the latest updates on new products and upcoming sales.</p>
     <form class="max-w-lg mx-auto">
       <div class="flex flex-col md:flex-row items-center">
         <app-input class="md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4" [inputType]="'email'" [inputClases]="'w-full  md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4'" [placeHolder]="'Enter your email'"></app-input>

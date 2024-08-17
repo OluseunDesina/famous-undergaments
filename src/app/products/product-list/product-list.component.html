@@ -37,12 +37,14 @@
     <!-- Product Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       <!-- Product Card -->
+       @for (product of productList; track product._id) {
+         <app-product-card [product]="product"></app-product-card>
+       }
 
-      <app-product-card [product]="{name: 'product 1', price: '25'}"></app-product-card>
-      <app-product-card [product]="{name: 'product 2', price: '25'}"></app-product-card>
+      <!-- <app-product-card [product]="{name: 'product 2', price: '25'}"></app-product-card>
       <app-product-card [product]="{name: 'product 3', price: '25'}"></app-product-card>
       <app-product-card [product]="{name: 'product 4', price: '25'}"></app-product-card>
-      <app-product-card [product]="{name: 'product 5', price: '25'}"></app-product-card>
+      <app-product-card [product]="{name: 'product 5', price: '25'}"></app-product-card> -->
       <!-- Repeat Product Cards -->
       <!-- More product cards here... -->
     </div>

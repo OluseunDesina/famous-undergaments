@@ -24,19 +24,19 @@ export class LandingPageComponent {
   categorys: any[] = [
     {
       id: 1,
-      imageUrl: 'https://via.placeholder.com/600x800',
+      imageUrl: '../../assets/MEN-BOXER-BLUE.jpg',
       title: 'Boxers',
       description: 'Comfortable and loose-fitting, perfect for everyday wear.',
     },
     {
       id: 2,
-      imageUrl: 'https://via.placeholder.com/600x800',
+      imageUrl: '../../assets/MEN-BOXER-WHITE.jpg',
       title: 'Briefs',
       description: 'Classic, snug fit for support and comfort.',
     },
     {
       id: 3,
-      imageUrl: 'https://via.placeholder.com/600x800',
+      imageUrl: '../../assets/MEN-BOXER-BLACK.jpg',
       title: 'Boxer Briefs',
       description: 'Combining the fit of briefs with the length of boxers.',
     },
