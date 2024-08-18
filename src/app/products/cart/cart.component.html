@@ -5,44 +5,63 @@
     <div class="flex flex-col lg:flex-row lg:space-x-8">
       <!-- Cart Items -->
       <div class="lg:w-3/4">
+        @if ((cartItems.length || 0) > 0 ) {
+        @for (cartItem of cartItems; track cartItem.id) {
         <div class="bg-white shadow-lg rounded-lg p-4 mb-4">
           <div class="flex items-center">
-            <img src="https://via.placeholder.com/100x100" alt="Product Image"
+            <img [src]="cartItem.imageUrl ||'https://via.placeholder.com/100x100'" alt="Product Image"
               class="w-24 h-24 object-cover rounded-lg">
             <div class="ml-4 flex-1">
-              <h2 class="text-lg font-semibold text-gray-800">Product Name</h2>
-              <p class="text-sm text-gray-600 mt-1">$25.00</p>
+              <h2 class="text-lg font-semibold text-gray-800">{{cartItem.name}}</h2>
+              <p class="text-sm text-gray-600 mt-1">{{cartItem.price| currency: 'NGN' : '₦'}}</p>
             </div>
             <div class="flex items-center space-x-2">
-              <app-input [inputType]="'number'" [inputClases]="'w-16 text-center'"></app-input>
+              <input (ngModelChange)="updateItem(cartItem.id, $event)" min="0" type="number"
+                [(ngModel)]="cartItem.quantity"
+                [ngStyle]="{'width': ((cartItem?.quantity?.toString()?.length || 0) + 5) + 'ch'}"
+                class="min-w-16  border border-primary rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary p-2" />
+              <!-- <app-input [inputType]="'number'" [inputClases]="'w-16 text-center'"></app-input> -->
 
-              <app-button>Remove</app-button>
+              <app-button (click)="removeItem(cartItem.id)">Remove</app-button>
             </div>
           </div>
         </div>
+        }
 
         <!-- Additional Cart Items... -->
+        } @else {
+        <div class="text-ceneter h-full flex flex-col items-center justify-center">
+          <p class="mb-5 font-bold text-3xl">
+            Cart is empty
+          </p>
+
+          <app-button [routerLink]="['/']" routerLinkActive="router-link-active">
+            Continue Shopping
+          </app-button>
+        </div>
+        }
       </div>
+
 
       <!-- Order Summary -->
       <div class="lg:w-1/4 bg-white shadow-lg rounded-lg p-4">
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h2>
         <div class="text-sm flex justify-between text-gray-600 mb-2">
           <span>Subtotal</span>
-          <span>$75.00</span>
+          <span>{{subTotal | currency: 'NGN' : '₦'}}</span>
         </div>
         <div class="text-sm flex justify-between text-gray-600 mb-2">
           <span>Shipping</span>
-          <span>$10.00</span>
+          <span>{{0 | currency: 'NGN' : '₦'}}</span>
         </div>
         <div class="text-sm flex justify-between text-gray-600 mb-2">
-          <span>Tax</span>
-          <span>$5.00</span>
+          <span>Tax(7.5%)</span>
+          <span>{{subTotal * 0.075 | currency: 'NGN' : '₦'}}</span>
         </div>
         <div class="border-t border-gray-200 my-4"></div>
         <div class="flex justify-between text-gray-800 text-lg font-semibold">
           <span>Total</span>
-          <span>$90.00</span>
+          <span>{{subTotal * 1.075 | currency: 'NGN' : '₦'}}</span>
         </div>
         <app-button [routerLink]="['/checkout']" [inputClasses]="'mt-6 w-full'">
           Proceed to Checkout

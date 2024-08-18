@@ -1,7 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Product, ProductsService, CartItem } from '../../shared/services/products.service';
 
 @Component({
   selector: 'app-product-card',
@@ -15,8 +16,18 @@ import { RouterLink } from '@angular/router';
   styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent {
-  @Input({required: true}) product!: Partial<{name: string, imageUrl: string, id: string, price: string}>;
+  @Input({required: true}) product!: Partial<Product>;
+  private productService = inject(ProductsService);
+
   productActive = false;
+
+  onAddtocart() {
+    const product: any = {
+      ...this.product,
+      quantity: 1
+    }
+    this.productService.addToCart(product)
+  }
 
 
 }

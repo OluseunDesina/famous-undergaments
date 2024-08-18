@@ -1,57 +1,56 @@
 <section class="py-12 px-4 bg-gray-50">
   <div class="container mx-auto">
-      <!-- Product Details -->
-      <div class="flex flex-col lg:flex-row">
-          <!-- Product Images -->
-          <div class="lg:w-2/5 lg:pr-8">
-              <div class="relative mb-4">
-                  <img src="https://via.placeholder.com/600x600" alt="Product Image"
-                      class="w-full h-96 object-cover rounded-lg shadow-lg">
-              </div>
-              <div class="flex space-x-4 overflow-x-auto">
-                  <img src="https://via.placeholder.com/150x150" alt="Product Thumbnail"
-                      class="w-24 h-24 object-cover rounded-lg shadow-sm cursor-pointer">
-                  <img src="https://via.placeholder.com/150x150" alt="Product Thumbnail"
-                      class="w-24 h-24 object-cover rounded-lg shadow-sm cursor-pointer">
-                  <img src="https://via.placeholder.com/150x150" alt="Product Thumbnail"
-                      class="w-24 h-24 object-cover rounded-lg shadow-sm cursor-pointer">
-              </div>
-          </div>
-
-          <!-- Product Info -->
-          <div class="lg:w-3/5 lg:pl-8 mt-6 lg:mt-0">
-              <h1 class="text-3xl font-bold text-black">Product Name</h1>
-              <p class="text-black mt-2">$99.99</p>
-              <p class="text-black text-sm mt-4">Detailed description of the product goes here. It should provide potential customers with all necessary information about the product, including its features, specifications, and any other relevant details.</p>
-
-              <!-- Add to Cart and Actions -->
-              <div class="flex items-center mt-6 space-x-4">
-                  <app-button >
-                      Add to Cart
-                  </app-button>
-                  <app-button >
-                      Add to Wishlist
-                  </app-button>
-              </div>
-
-              <!-- Product Specifications -->
-              <div class="mt-8">
-                  <h2 class="text-xl font-semibold text-black">SIZE</h2>
-
-                  <app-tabs [tabs]="sizesTab"></app-tabs>
-              </div>
-
-              <!-- Similar Products -->
-              <div class="mt-12">
-                  <h2 class="text-xl font-semibold text-black">Similar Products</h2>
-                  <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    @for (product of similarProducts; track product._id) {
-                      <app-product-card [product]="product"></app-product-card>
-                    }
-                  </div>
-
-              </div>
-          </div>
+    <!-- Product Details -->
+    <div class="flex flex-col lg:flex-row">
+      <!-- Product Images -->
+      <div class="lg:w-2/5 lg:pr-8">
+        <div class="relative mb-4">
+          <img [src]="product.imageUrl" alt="Product Image" class="w-full h-96 object-cover rounded-lg shadow-lg">
+        </div>
+        <div class="flex space-x-4 overflow-x-auto">
+          @for (image of product.otherImageUrl; track image) {
+          <img [src]="image || 'https://via.placeholder.com/150x150'" alt="Product Thumbnail"
+            class="w-24 h-24 object-cover rounded-lg shadow-sm cursor-pointer">
+          }
+        </div>
       </div>
+
+      <!-- Product Info -->
+      <div class="lg:w-3/5 lg:pl-8 mt-6 lg:mt-0">
+        <h1 class="text-3xl font-bold text-black">{{product.name}}</h1>
+        <p class="text-black mt-2">{{product.price | currency: 'NGN' : '₦' }}</p>
+        <p class="text-black text-sm mt-4">
+          {{product.description || "Detailed description of the product goes here. It should provide potential customers with all necessary information about the product, including its features, specifications, and any other relevant details."}}
+        </p>
+
+        <!-- Add to Cart and Actions -->
+        <div class="flex items-center mt-6 space-x-4">
+          <app-button (click)="onAddtocart(product)">
+            Add to Cart
+          </app-button>
+          <!-- <app-button>
+            Add to Wishlist
+          </app-button> -->
+        </div>
+
+        <!-- Product Specifications -->
+        <div class="mt-8">
+          <h2 class="text-xl font-semibold text-black">SIZE</h2>
+
+          <app-tabs [activeTab]="sizesTab[0]" [tabs]="sizesTab"></app-tabs>
+        </div>
+
+        <!-- Similar Products -->
+        <div class="mt-12">
+          <h2 class="text-xl font-semibold text-black">Similar Products</h2>
+          <div class="grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @for (product of similarProducts; track product.id) {
+            <app-product-card [product]="product"></app-product-card>
+            }
+          </div>
+
+        </div>
+      </div>
+    </div>
   </div>
 </section>

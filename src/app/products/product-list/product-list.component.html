@@ -25,12 +25,12 @@
     <div class="px-2 mb-8">
       <div class="flex flex-col lg:flex-row justify-between items-center">
         <!-- Categories Filter -->
-        <app-tabs [tabs]="categories"></app-tabs>
+        <app-tabs [activeTab]="categorys[0]" (tabSelect)="onFilter($event)" [tabs]="categorys"></app-tabs>
 
         <!-- Search Bar -->
-        <div class="w-full lg:w-1/3">
+        <!-- <div class="w-full lg:w-1/3">
           <app-input [inputClases]="'w-full'" [placeHolder]="'Search products...'"></app-input>
-        </div>
+        </div> -->
       </div>
     </div>
 

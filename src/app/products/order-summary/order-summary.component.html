@@ -1,3 +1,4 @@
+@if (paymentStatus != 'success') {
 <section class="py-12 px-4 bg-gray-50">
   <div class="container mx-auto">
     <h1 class="text-3xl font-bold text-gray-800 mb-8">Order Summary</h1>
@@ -6,46 +7,99 @@
       <!-- Shipping Details -->
       <h2 class="text-xl font-semibold text-gray-800 mb-4">Shipping Details</h2>
       <div class="mb-6 text-sm">
-        <p class="text-gray-700">John Doe</p>
-        <p class="text-gray-700">1234 Street Name, City, State, 12345</p>
-        <p class="text-gray-700">{{'john@example.com'}}</p>
-        <p class="text-gray-700">(123) 456-7890</p>
+        <p class="text-gray-700">{{shippingForm?.firstname}} {{shippingForm?.lastname}}</p>
+        <p class="text-gray-700">{{shippingForm?.address ? (shippingForm?.address + ",") : ""}} {{shippingForm?.city ?
+          (shippingForm?.city + ",") : ""}} {{shippingForm?.state ? (shippingForm?.state + ",") : ""}}
+          {{shippingForm?.zipcode}}</p>
+        <p class="text-gray-700">{{shippingForm?.email}}</p>
+        <p class="text-gray-700">{{shippingForm?.phone}}</p>
       </div>
 
       <!-- Order Items -->
       <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Items</h2>
       <div class="mb-4 text-sm">
+        @for (cartItem of cartItems; track cartItem.id) {
         <div class="flex items-center justify-between">
-          <span class="text-gray-800">Product Name x 1</span>
-          <span class="text-gray-600">$25.00</span>
+          <span class="text-gray-800">{{cartItem.name}} x {{cartItem?.quantity}}</span>
+          <span class="text-gray-600">{{((cartItem.quantity * cartItem.price) || 0) | currency: 'NGN' : '₦'}}</span>
         </div>
-        <!-- Additional Order Items... -->
+        }
       </div>
 
       <!-- Order Summary -->
       <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h2>
       <div class="text-sm flex justify-between text-gray-600 mb-2">
         <span>Subtotal</span>
-        <span>$75.00</span>
+        <span>{{subTotal | currency: 'NGN' : '₦'}}</span>
       </div>
       <div class="flex justify-between text-gray-600 mb-2">
         <span>Shipping</span>
-        <span>$10.00</span>
+        <span>{{shipping | currency: 'NGN' : '₦'}}</span>
       </div>
       <div class="flex justify-between text-gray-600 mb-2">
-        <span>Tax</span>
-        <span>$5.00</span>
+        <span>Tax(7.5%)</span>
+        <span>{{subTotal * 0.075 | currency: 'NGN' : '₦'}}</span>
       </div>
       <div class="border-t border-gray-200 my-4"></div>
       <div class="flex justify-between text-gray-800 text-lg font-semibold">
         <span>Total</span>
-        <span>$90.00</span>
+        <span>{{((subTotal * 1.075 ) + shipping) | currency: 'NGN' : '₦'}}</span>
       </div>
 
       <!-- Place Order Button -->
-      <app-button [inputClasses]="'mt-6 w-full'">
-        Place Order
+      <app-button (click)="onPayWithPaystack()" [inputClasses]="'mt-6 w-full'">
+        @if (paymentStatus == 'pending') {
+        Make Payment
+        }
+        @if (paymentStatus == 'failed') {
+        Retry payment
+        }
       </app-button>
     </div>
   </div>
 </section>
+}
+
+@if (paymentStatus == 'success') {
+<section>
+  <div class="flex flex-col items-center justify-center bg-gray-200 p-4">
+    <div class="bg-white rounded-lg shadow-lg p-6 max-w-lg w-full text-center">
+      <svg class="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M9 12l2 2l4-4m0 8h6m-6 0a9 9 0 11-9-9a9 9 0 019 9z"></path>
+      </svg>
+      <h2 class="text-2xl font-bold text-gray-800 mb-2">Payment Successful!</h2>
+      <p class="text-gray-600 mb-6">Thank you for your purchase. Your order has been placed successfully.</p>
+
+      <div class="text-left mb-4">
+        <h3 class="text-lg font-semibold text-gray-800">Order Summary</h3>
+        <div class="flex justify-between text-gray-600">
+          <span>Order Number:</span>
+          <span>#12345678</span>
+        </div>
+        <div class="flex justify-between text-gray-600">
+          <span>Date:</span>
+          <span>{{date | date : 'mediumDate'}}</span>
+        </div>
+        <div class="flex justify-between text-gray-600">
+          <span>Total:</span>
+          <span>{{((subTotal * 1.075 ) + shipping) | currency: 'NGN' : '₦'}}</span>
+        </div>
+      </div>
+
+      <div class="flex justify-center space-x-4">
+        <a [routerLink]="'/'"
+          class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-primary">
+          Continue Shopping
+        </a>
+        <!-- <a routerLink="/orders"
+          class="bg-gray-200 text-gray-800 py-2 px-4 rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-400">
+          View Order Details
+        </a> -->
+      </div>
+    </div>
+  </div>
+
+</section>
+}

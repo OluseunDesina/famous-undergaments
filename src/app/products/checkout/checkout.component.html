@@ -7,74 +7,78 @@
       <div class="lg:w-3/4 bg-white shadow-lg rounded-lg p-4 mb-4">
         <h2 class="text-xl font-semibold text-gray-800 mb-4">Billing Details</h2>
 
-        <form>
+        <form [formGroup]="shippingForm">
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <div>
-              <app-input [label]="'First Name'" [inputType]="'text'"></app-input>
+              <app-input [control]="firstname" [label]="'First Name'" [inputType]="'text'"></app-input>
             </div>
             <div>
-              <app-input [label]="'Last Name'" [inputType]="'text'"></app-input>
+              <app-input [control]="lastname" [label]="'Last Name'" [inputType]="'text'"></app-input>
             </div>
             <div>
-              <app-input [label]="'Email'" [inputType]="'text'"></app-input>
+              <app-input [control]="email" [label]="'Email'" [inputType]="'text'"></app-input>
             </div>
             <div>
-              <app-input [label]="'Phone'" [inputType]="'text'"></app-input>
+              <app-input [control]="phone" [label]="'Phone'" [inputType]="'text'"></app-input>
             </div>
           </div>
 
           <div class="mb-6">
-            <app-input [label]="'Address'" [inputType]="'text'"></app-input>
+            <app-input [control]="address" [label]="'Address'" [inputType]="'text'"></app-input>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <div>
-              <app-input [label]="'City'" [inputType]="'text'"></app-input>
+              <app-input [control]="city" [label]="'City'" [inputType]="'text'"></app-input>
             </div>
             <div>
-              <app-input [label]="'ZIP Code'" [inputType]="'text'"></app-input>
+              <app-input [control]="zipcode" [label]="'ZIP Code'" [inputType]="'text'"></app-input>
             </div>
           </div>
 
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
             <div>
               <label for="country" class="text-sm block text-gray-700">Country</label>
-              <select id="country"
+              <select formControlName="country"
                 class="w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 p-2">
-                <option>United States</option>
-                <option>Canada</option>
-                <option>United Kingdom</option>
+                <option selected disabled value="">Please select a country</option>
+                <option value="Nigeria">Nigeria</option>
               </select>
             </div>
             <div>
-              <app-input [label]="'State/Province'" [inputType]="'text'"></app-input>
+              <app-input [control]="state" [label]="'State/Province'" [inputType]="'text'"></app-input>
             </div>
           </div>
-          <app-button [inputClasses]="'w-full'" [routerLink]="['/order-summary']" routerLinkActive="router-link-active">
+          <app-button [inputClasses]="'w-full'" (click)="onSave()">
             Continue to Payment
           </app-button>
         </form>
       </div>
 
       <!-- Order Summary -->
-      <div class="lg:w-1/4 bg-white shadow-lg rounded-lg p-4">
-        <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h2>
-        <div class="text-sm flex justify-between text-gray-600 mb-2">
-          <span>Subtotal</span>
-          <span>$75.00</span>
+      <div class="lg:w-1/4 bg-white shadow-lg rounded-lg p-4 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">Order Summary</h2>
+          <div class="text-sm flex justify-between text-gray-600 mb-2">
+            <span>Subtotal</span>
+            <span>{{subTotal | currency: 'NGN' : '₦'}}</span>
+          </div>
+          <div class="text-sm flex justify-between text-gray-600 mb-2">
+            <span>Shipping</span>
+            <span>{{shipping | currency: 'NGN' : '₦'}}</span>
+          </div>
+          <div class="text-sm flex justify-between text-gray-600 mb-2">
+            <span>Tax(7.5%)</span>
+            <span>{{subTotal * 0.075 | currency: 'NGN' : '₦'}}</span>
+          </div>
         </div>
-        <div class="text-sm flex justify-between text-gray-600 mb-2">
-          <span>Shipping</span>
-          <span>$10.00</span>
-        </div>
-        <div class="text-sm flex justify-between text-gray-600 mb-2">
-          <span>Tax</span>
-          <span>$5.00</span>
-        </div>
-        <div class="border-t border-gray-200 my-4"></div>
-        <div class="flex justify-between text-gray-800 text-lg font-semibold">
-          <span>Total</span>
-          <span>$90.00</span>
+
+        <div>
+          <div class="border-t border-gray-200 my-4"></div>
+          <div class="flex justify-between text-gray-800 text-lg font-semibold">
+            <span>Total</span>
+            <span>{{((subTotal * 1.075 ) + shipping) | currency: 'NGN' : '₦'}}</span>
+          </div>
         </div>
       </div>
     </div>

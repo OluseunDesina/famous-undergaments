@@ -1,5 +1,5 @@
 <div class="flex items-center space-x-4 mb-4 lg:mb-0">
   @for (tab of tabs; track tab._id) {
-    <button class="filter-button text-gray-700 px-4 py-2 rounded-md focus:outline-none">{{tab.name}}</button>
+    <button (click)="onTabSelect(tab); activeTab = tab" class="filter-button text-gray-700 px-4 py-2 rounded-md focus:outline-none" [ngClass]="{'active': tab.name == activeTab?.name}">{{tab.name}}</button>
   }
 </div>

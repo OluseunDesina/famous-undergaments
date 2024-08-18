@@ -26,10 +26,10 @@
         <div
           class="container mx-auto h-full flex flex-col justify-center items-center text-center text-white relative z-10">
           <h3 [ngClass]="{'underline': activeCat?.id === category?.id}" class="text-xl font-semibold text-white">
-            {{category.title}}</h3>
+            {{category.name}}</h3>
           <p class="text-white mt-2 text-sm">{{category.description}}</p>
           <app-button [inputClasses]="'mt-8 '">
-            Order Now
+            Shop Now
           </app-button>
         </div>
       </div>
@@ -173,7 +173,9 @@
     <p class="text-sm mb-6 md:mb-8">Get the latest updates on new products and upcoming sales.</p>
     <form class="max-w-lg mx-auto">
       <div class="flex flex-col md:flex-row items-center">
-        <app-input class="md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4" [inputType]="'email'" [inputClases]="'w-full  md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4'" [placeHolder]="'Enter your email'"></app-input>
+        <input placeholder="enter email"
+          class="w-full  md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4 border border-primary rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary p-2" />
+        <!-- <app-input class="md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4" [inputType]="'email'" [inputClases]="'w-full  md:flex-1 px-4 py-2 mb-4 md:mb-0 md:mr-4'" [placeHolder]="'Enter your email'"></app-input> -->
         <app-button>
           Subscribe
         </app-button>

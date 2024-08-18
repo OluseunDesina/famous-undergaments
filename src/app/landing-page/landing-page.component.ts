@@ -4,6 +4,7 @@ import { HeroComponent } from './hero/hero.component';
 import { ButtonComponent } from '../shared/components/button/button.component';
 import { Router, RouterLink } from '@angular/router';
 import { InputComponent } from '../shared/components/input/input.component';
+import { ProductsService } from '../shared/services/products.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -13,41 +14,26 @@ import { InputComponent } from '../shared/components/input/input.component';
     RouterLink,
     HeroComponent,
     ButtonComponent,
-    InputComponent
-],
+    InputComponent,
+  ],
   templateUrl: './landing-page.component.html',
-  styleUrl: './landing-page.component.scss'
+  styleUrl: './landing-page.component.scss',
 })
 export class LandingPageComponent {
-  private readonly router = inject(Router)
+  private readonly router = inject(Router);
+  private readonly productsService = inject(ProductsService);
 
-  categorys: any[] = [
-    {
-      id: 1,
-      imageUrl: '../../assets/MEN-BOXER-BLUE.jpg',
-      title: 'Boxers',
-      description: 'Comfortable and loose-fitting, perfect for everyday wear.',
-    },
-    {
-      id: 2,
-      imageUrl: '../../assets/MEN-BOXER-WHITE.jpg',
-      title: 'Briefs',
-      description: 'Classic, snug fit for support and comfort.',
-    },
-    {
-      id: 3,
-      imageUrl: '../../assets/MEN-BOXER-BLACK.jpg',
-      title: 'Boxer Briefs',
-      description: 'Combining the fit of briefs with the length of boxers.',
-    },
-  ];
+  categorys: any[] = [];
 
   activeCat: any;
 
   onCategorySelect(category: any) {
-    this.router.navigate(["/product-list"], {
-      queryParams: {category: category.title}
-    })
+    this.router.navigate(['/product-list'], {
+      queryParams: { category: category.title },
+    });
   }
 
+  ngOnInit() {
+    this.categorys = this.productsService.getCategorys();
+  }
 }
