@@ -2,7 +2,7 @@
   <div class="container mx-auto flex items-center justify-between">
     <!-- Logo -->
     <div class="text-black text-xl font-bold">
-      <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+      <a [routerLink]="['/']" routerLinkActive="router-link-active">
         <img class="logo" src="assets/logo.png" alt="">
       </a>
     </div>
@@ -26,9 +26,9 @@
         </button>
       </div> -->
 
-      <div [routerLink]="['/cart']" routerLinkActive="router-link-active"  class="flex gap-2 items-center">
+      <div [routerLink]="['/cart']" routerLinkActive="router-link-active" class="flex gap-2 items-center">
         <div class="relative flex items-center">
-          <button class="p-1 text-black focus:outline-none">
+          <button class="p-1 text-primary focus:outline-none">
             <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
               stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -36,12 +36,12 @@
             </svg>
           </button>
           @if (cartLength > 0) {
-            <span
-              class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">{{cartLength}}</span>
+          <span
+            class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">{{cartLength}}</span>
           }
         </div>
 
-        <button class="hidden md:block">
+        <button class="text-primary hidden md:block">
           Cart
         </button>
       </div>
@@ -49,10 +49,17 @@
 
     <!-- Mobile Menu Button -->
     <div class="md:hidden">
-      <button (click)="showMenu = !showMenu" class="text-black focus:outline-none">
-        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      <button (click)="showMenu = !showMenu" class="text-primary focus:outline-none">
+        @if (showMenu == true) {
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+          class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
+        } @else {
+          <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        }
       </button>
     </div>
   </div>
@@ -69,7 +76,7 @@
         class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span> -->
     </div>
     <div [routerLink]="['/cart']" routerLinkActive="router-link-active" class="relative flex flex-row items-center">
-      <button class="p-2 text-black focus:outline-none flex items-center">
+      <button class="p-2 text-primary focus:outline-none flex items-center">
         <svg class="h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M3 3h18l-2 13H5L3 3zM16 8h2M8 8h2m-4 4h12M7 16a2 2 0 100 4 2 2 0 000-4zM17 16a2 2 0 100 4 2 2 0 000-4z" />
@@ -77,8 +84,8 @@
         <span class="ml-2">Cart</span>
       </button>
       @if (cartLength > 0) {
-        <span
-          class="absolute top-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">{{cartLength}}</span>
+      <span
+        class="absolute top-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">{{cartLength}}</span>
       }
       <!-- <span
         class="absolute top-0 right-0 bg-primary text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">3</span> -->
