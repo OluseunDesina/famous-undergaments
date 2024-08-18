@@ -52,6 +52,7 @@ export class ProductViewComponent {
   }
 
   onAddtocart(product: any) {
-    this.productService.addToCart(product)
+    const cartItem = {...product, quantity: 1}
+    this.productService.addToCart(cartItem)
   }
 }

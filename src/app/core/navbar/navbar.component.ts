@@ -22,4 +22,6 @@ export class NavbarComponent {
   // this.cartLength = this.productService.getTotalQuantity
   }
 
+
+
 }

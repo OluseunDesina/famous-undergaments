@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { NotificationService } from './notification.service';
 
 export interface Product {
   id: string | number;
@@ -29,10 +30,10 @@ export class ProductsService {
   private productList: Partial<Product>[] = [
     {
       id: 1,
-      name: 'Product',
-      price: 25,
+      name: 'Premium Boxer Brief - Black',
+      price: 2500,
       imageUrl: '../../../assets/MEN-BOXER-BLACK.jpg',
-      description: '',
+      description: 'Experience unmatched comfort with our premium black boxer briefs. Designed for all-day wear, these boxers offer a snug fit that moves with you.',
       category: categoryEnums[0],
       otherImageUrl: [
         '../../../assets/MEN-BOXER-BLACK.jpg',
@@ -42,10 +43,10 @@ export class ProductsService {
     },
     {
       id: 2,
-      name: 'Product',
-      price: 25,
+      name: 'Classic Boxer - Navy Blue',
+      price: 2700,
       imageUrl: '../../../assets/MEN-BOXER-BLUE.jpg',
-      description: '',
+      description: 'Our classic navy blue boxers are crafted from soft, breathable fabric, perfect for everyday comfort and style.',
       category: categoryEnums[1],
       otherImageUrl: [
         '../../../assets/MEN-BOXER-BLUE.jpg',
@@ -55,10 +56,10 @@ export class ProductsService {
     },
     {
       id: 3,
-      name: 'Product',
-      price: 25,
+      name: 'Cotton Comfort Brief - White',
+      price: 3000,
       imageUrl: '../../../assets/MEN-BOXER-WHITE.jpg',
-      description: '',
+      description: 'Stay fresh and comfortable with our white cotton briefs. Featuring a classic design, these briefs provide the perfect balance of support and softness.',
       category: categoryEnums[2],
       otherImageUrl: [
         '../../../assets/MEN-BOXER-WHITE.jpg',
@@ -68,10 +69,10 @@ export class ProductsService {
     },
     {
       id: 4,
-      name: 'Product',
-      price: 25,
+      name: 'Premium Boxer Brief - Charcoal Gray',
+      price: 3500,
       imageUrl: '../../../assets/MEN-BOXER-BLACK.jpg',
-      description: '',
+      description: 'Upgrade your essentials with our charcoal gray boxer briefs. These premium briefs offer superior comfort and a modern fit.',
       category: categoryEnums[0],
       otherImageUrl: [
         '../../../assets/MEN-BOXER-BLACK.jpg',
@@ -81,10 +82,10 @@ export class ProductsService {
     },
     {
       id: 5,
-      name: 'Product',
-      price: 25,
+      name: 'Classic Boxer - Ocean Blue',
+      price: 3000,
       imageUrl: '../../../assets/MEN-BOXER-BLUE.jpg',
-      description: '',
+      description: 'Dive into comfort with our ocean blue boxers. These classic boxers are perfect for those who value both style and relaxation.',
       category: categoryEnums[1],
       otherImageUrl: [
         '../../../assets/MEN-BOXER-BLUE.jpg',
@@ -94,10 +95,10 @@ export class ProductsService {
     },
     {
       id: 6,
-      name: 'Product',
-      price: 25,
+      name: 'Cotton Comfort Brief - Cool White',
+      price: 3000,
       imageUrl: '../../../assets/MEN-BOXER-WHITE.jpg',
-      description: '',
+      description: 'Our cool white cotton briefs are a must-have for your underwear collection. They offer a sleek design with maximum comfort for everyday wear.',
       category: categoryEnums[2],
       otherImageUrl: [
         '../../../assets/MEN-BOXER-WHITE.jpg',
@@ -106,7 +107,7 @@ export class ProductsService {
       ],
     },
   ];
-  private categorys: any[] = [
+private categorys: any[] = [
     {
       id: 1,
       imageUrl: '../../assets/MEN-BOXER-BLUE.jpg',
@@ -130,6 +131,7 @@ export class ProductsService {
   private cartSubject = new BehaviorSubject<CartItem[]>(this.cart);
   private cartTotalSubject = new BehaviorSubject<number>(0);
   shippingForm!: FormGroup;
+  private notification = inject(NotificationService)
 
   getCategorys() {
     return this.categorys;
@@ -183,13 +185,14 @@ export class ProductsService {
   addToCart(item: CartItem) {
     const existingItem = this.cart.find((cartItem) => cartItem.id === item.id);
     if (existingItem) {
-      // existingItem.quantity += item.quantity;
+      existingItem.quantity = 1;
     } else {
       this.cart.push(item);
     }
     this.cartSubject.next(this.cart);
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.cartTotalSubject.next(this.calcTotalCost());
+    this.notification.success("Item added to cart")
   }
 
   removeFromCart(productId: number) {
@@ -197,6 +200,7 @@ export class ProductsService {
     this.cartSubject.next(this.cart);
     localStorage.setItem('cart', JSON.stringify(this.cart));
     this.cartTotalSubject.next(this.calcTotalCost());
+    this.notification.success("Item removed from cart")
   }
 
   editCart(productId: number, quantity: number) {
@@ -210,7 +214,8 @@ export class ProductsService {
         this.cartSubject.next(this.cart);
         this.cartTotalSubject.next(this.calcTotalCost());
       }
-    }
+    this.notification.success("Cart updated")
+  }
   }
 
   private calcTotalCost(): number {
@@ -229,5 +234,6 @@ export class ProductsService {
     localStorage.setItem('cart', JSON.stringify(this.cart))
     this.cartSubject.next(this.cart);
     this.cartTotalSubject.next(this.calcTotalCost());
+    // this.notification.success("Item removed from cart")
   }
 }
